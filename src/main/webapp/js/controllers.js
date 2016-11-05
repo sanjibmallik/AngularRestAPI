@@ -3,7 +3,7 @@
 /* Controllers */
 
 
-var app = angular.module('ngdemo.controllers', []);
+var app = angular.module('hotNgApp.controllers', []);
 
 
 // Clear browser cache (in development mode)

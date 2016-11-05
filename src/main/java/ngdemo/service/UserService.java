@@ -10,4 +10,10 @@ public class UserService {
         user.setLastName("Mallik");
         return user;
     }
+
+    public String getFullName(){
+        User user = new User();
+        String fullName = "sanjib Mallik";
+        return fullName;
+    }
 }
