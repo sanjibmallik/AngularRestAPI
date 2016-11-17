@@ -5,10 +5,6 @@
 
 var app = angular.module('hotNgApp.controllers', []);
 
-
-// Clear browser cache (in development mode)
-//
-// http://stackoverflow.com/questions/14718826/angularjs-disable-partial-caching-on-dev-machine
 app.run(function ($rootScope, $templateCache) {
     $rootScope.$on('$viewContentLoaded', function () {
         $templateCache.removeAll();
@@ -23,4 +19,12 @@ app.controller('MyCtrl1', ['$scope', 'UserFactory', function ($scope, UserFactor
         $scope.lastName = userFactory.lastName;
         $scope.fullName = firstName+" "+lastName;
     })
+}]);
+//USER LOGIN CONTROLLER
+app.controller('loginCtrl', ['$scope', 'UserFactory', function ($scope, UserFactory) {
+    $scope.userLoginFormSubmit =function(){
+        alert("inside controller");
+        console.log($scope.userLoginForm);
+    }
+
 }]);

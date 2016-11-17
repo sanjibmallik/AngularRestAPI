@@ -1,29 +1,281 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" ng-app="hotNgApp">
 <head>
     <meta charset="utf-8">
-    <title>HookedOnTalent</title>
-    <link rel="stylesheet" href="css/app.css"/>
-</head>
-<body>
-<ul class="menu">
-    <li><a href="#/view1">view1</a></li>
-    <li><a href="#/view2">view2</a></li>
-</ul>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<div ng-view>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Neon Admin Panel" />
+    <meta name="author" content="" />
+
+    <title>login | HookedOn Talent</title>
+
+    <link rel="stylesheet" href="https://d2ue829my6ap69.cloudfront.net/css/jquery-ui-1.10.3.custom.min.css">
+    <link rel="stylesheet" href="https://d2ue829my6ap69.cloudfront.net/css/entypo.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic">
+    <link rel="stylesheet" href="https://d2ue829my6ap69.cloudfront.net/css/bootstrap.css">
+    <link rel="stylesheet" href="https://d2ue829my6ap69.cloudfront.net/css/neon-core.css">
+    <link rel="stylesheet" href="https://d2ue829my6ap69.cloudfront.net/css/neon-theme.css">
+    <link rel="stylesheet" href="https://d2ue829my6ap69.cloudfront.net/css/neon-forms.css">
+    <link rel="stylesheet" href="https://d2ue829my6ap69.cloudfront.net/css/custom.css">
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/jquery-1.11.0.min.js"></script>
+
+
+</head>
+
+<body ng-controller="loginCtrl">
+
+
+<div id="loginField">
+ <div class="page-body login-page login-form-fall">
+
+
+    <!-- This is needed when you send requests via Ajax -->
+    <script type="text/javascript">
+        var baseurl = '';
+    </script>
+
+    <div class="login-container">
+
+        <div class="login-header login-caret">
+
+            <div class="login-content" style="width:100%;">
+
+                <a href="http://www.accionlabs.com" target="_blank" class="logo">
+                    <img src="https://d2ue829my6ap69.cloudfront.net/images/accionlogo.jpg" height="60" alt="" />
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="login-progressbar">
+            <div></div>
+        </div>
+
+        <div class="login-form" ng-controller="loginCtrl">
+
+            <div class="login-content">
+
+                <div id="div1">
+
+                   <form id="login" ng-submit="userLoginFormSubmit()" role="form" name="userLoginForm" ng-model="userLoginForm">
+
+                          <div class="form-group">
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="entypo-user"></i>
+                                </div>
+
+                                <input type="text" ng-model="userName" class="form-control" name="username" id="username" placeholder="User Name" autocomplete="off" data-mask="email" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="entypo-key"></i>
+                                </div>
+
+                                <input type="password"ng-model="password" class="form-control" name="password" id="password" placeholder="Password" autocomplete="off" />
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-block btn-login" name="commit" value="Log-In">
+                                <i class="entypo-login"></i>
+                                Login
+                            </button>
+                        </div>
+
+                    </form>
+
+
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block pull-right" name="forgotPassword" onclick="hide('pre_subGen')" id="show"
+                                style="width: 40%;">
+                            <i class="entypo-address"></i>
+                            Forgot Password
+                        </button>
+                    </div>
+
+                    <div style=" margin-top: 270px;">
+                        <p></p><p></p><p></p>
+                    </div>
+                </div>
+
+                <div id="div2" style="display: none">
+
+                    <form id="resetPasswordForm" action="/RecruitmentWeb/forgotPasswordPostData.do" method="POST" onsubmit="checkEmailId()"<%--"return verifyEmptyResetPassword();"--%>>
+
+                    <div class="form-group">
+
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                                <i class="entypo-user"></i>
+                            </div>
+
+                            <input type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" title='E-Mail (Format: example@abc.com)' required class="form-control" name="emailId" id="emailId" placeholder="Email Id" autocomplete="off" data-mask="email"/>
+
+                        </div>
+                        <br/>
+
+                        <span id="emailIdExist" style="color: #ffffff"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn-block btn-login" name="resetPassword" value="Password Reset"<%-- onclick=""--%>>
+                        <i class="entypo-tools"></i>
+                        Reset Password
+                        </button>
+                    </div>
+
+                    </form>
+                    <div class="form-group">
+                        <button class="btn btn-primary btn-block pull-right" name="" onclick="show('pre_subGen')" id="cancels" style="width: 25%;">
+                            <i class="entypo-cancel"></i>
+                            Cancel
+                        </button>
+                    </div>
+
+                    <div style=" margin-top: 340px;">
+                        <p></p><p></p><p></p><p></p><p></p>
+                    </div>
+                </div>
+
+                <style>
+                    td {
+                        border: 1px solid rgba(204, 204, 204, 0.1) !important;
+                    }
+                    th {
+                        border: 1px solid rgba(204, 204, 204, 0.1) !important;
+                        background-color:rgba(235, 235, 235, 0) !important;
+                    }
+                    .icon-hover { cursor:pointer;}
+                </style>
+
+            </div>
+
+        </div>
+
+    </div>
+    <script>
+        function checkEmailId(){
+            var emailId = document.getElementById("emailId").value;
+
+            $.ajax({
+                url: '/RecruitmentWeb/'+emailId+'/checkEmailIdExist.do',
+                success: function(response)
+                {
+                    if(response=="Email Id Already Exist"){
+                        document.getElementById("emailIdExist").innerHTML = "New Password has been sent to your Email address";
+
+
+                    }else{
+                        document.getElementById("emailIdExist").innerHTML = "User does not exist in the Application";
+
+
+                    }
+                }
+            });
+        }
+
+    </script>
+
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/main-gsap.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/jquery-ui-1.10.3.minimal.min.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/bootstrap.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/joinable.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/resizeable.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/neon-api.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/jquery.validate.min.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/neon-login.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/neon-custom.js"></script>
+    <script src="https://d2ue829my6ap69.cloudfront.net/js/neon-demo.js"></script>
 
 </div>
+</div>
 
-<!-- In production use:
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
--->
-<script src="lib/angular/angular.js"></script>
-<script src="lib/angular/angular-resource.js"></script>
-<script src="js/app.js"></script>
-<script src="js/services.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/filters.js"></script>
-<script src="js/directives.js"></script>
 </body>
+
+
+<script type="text/javascript">
+    function verifyEmpty() {
+        var userName = document.getElementById("username").value;
+        var userPwd = document.getElementById("password").value;
+        if (userName == '') {
+            document.getElementById("username").focus();
+            document.getElementById("loginError").style.color="white";
+            document.getElementById("loginError").innerHTML = "Empty User Name";
+            return false;
+        }
+        if (userPwd == '') {
+            document.getElementById("password").focus();
+            document.getElementById("loginError").style.color="white";
+            document.getElementById("loginError").innerHTML = "Empty User Password";
+
+            return false;
+        }
+        return true;
+    }
+
+
+    function verifyEmptyResetPassword() {
+        var resetPassword = document.getElementById("emailId").value;
+
+        if (resetPassword == '') {
+            document.getElementById("emailId").focus();
+            document.getElementById("resetPasswordError").style.color="white";
+            document.getElementById("resetPasswordError").innerHTML = "EMPTY USER EMAIL-ID";
+            return false;
+        }
+        return true;
+    }
+</script>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#cancels').click(function () {
+            $('#div2').hide('fast');
+            $('#div1').show('fast');
+        });
+        $('#show').click(function () {
+            $('#div1').hide('fast');
+            $('#div2').show('fast');
+        });
+    });
+
+
+</script>
+
+<script>
+    function show(target) {
+        document.getElementById(target).style.display = 'block';
+    }
+
+    function hide(target) {
+        document.getElementById(target).style.display = 'none';
+    }
+
+</script>
+
+<script>
+
+    javascript:window.history.forward(1);
+
+</script>
+
+<script>
+    document.getElementById("headerMain").style.display="none";
+
+</script>
+
 </html>
